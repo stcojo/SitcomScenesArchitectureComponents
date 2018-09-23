@@ -1,9 +1,11 @@
-package com.flukeapps.notesarchcomponents;
+package com.flukeapps.notesarchcomponents.model;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
+
+import com.flukeapps.notesarchcomponents.room.NoteRepository;
 
 import java.util.List;
 

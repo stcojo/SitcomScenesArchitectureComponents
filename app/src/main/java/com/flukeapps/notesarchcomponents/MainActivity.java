@@ -6,6 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.flukeapps.notesarchcomponents.model.Note;
+import com.flukeapps.notesarchcomponents.model.NoteViewModel;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {

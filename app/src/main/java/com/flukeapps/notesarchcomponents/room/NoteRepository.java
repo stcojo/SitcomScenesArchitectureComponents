@@ -1,8 +1,10 @@
-package com.flukeapps.notesarchcomponents;
+package com.flukeapps.notesarchcomponents.room;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
+
+import com.flukeapps.notesarchcomponents.model.Note;
 
 import java.util.List;
 
