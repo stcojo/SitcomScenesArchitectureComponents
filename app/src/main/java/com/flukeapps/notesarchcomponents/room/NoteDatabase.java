@@ -51,7 +51,7 @@ public abstract class NoteDatabase extends RoomDatabase {
             noteDAO.insert(new Note("Penny", "Main character", 1));
             noteDAO.insert(new Note("Leonard Hofstadter", "Main character", 1));
             noteDAO.insert(new Note("Howard Wolowitz","Main character", 5));
-            noteDAO.insert(new Note(" Rajesh Koothrappali", "Main character", 3));
+            noteDAO.insert(new Note("Rajesh Koothrappali", "Main character", 3));
             return null;
         }
     }

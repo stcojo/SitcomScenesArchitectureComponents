@@ -16,6 +16,7 @@ import com.flukeapps.notesarchcomponents.model.NoteViewModel;
 import com.flukeapps.notesarchcomponents.room.NoteDAO;
 import com.flukeapps.notesarchcomponents.room.NoteDatabase;
 import com.flukeapps.notesarchcomponents.room.NoteRepository;
+import com.flukeapps.notesarchcomponents.utils.Utils;
 
 import java.util.List;
 
@@ -47,8 +48,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         fab.setOnClickListener(view -> {
-            Note note = new Note("Lambda note", "Note created from lambda using ARCH" , 10);
+            Note note = Utils.generateRandomNote();
             noteViewModel.insert(note);
+        });
+
+        fab.setOnLongClickListener(view -> {
+            noteViewModel.deleteAllNotes();
+            return true;
         });
     }
 
