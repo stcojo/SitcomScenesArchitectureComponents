@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
 import com.flukeapps.notesarchcomponents.model.Note;
+import com.flukeapps.notesarchcomponents.utils.Utils;
 
 @Database(entities = Note.class, version = 1)
 public abstract class NoteDatabase extends RoomDatabase {
@@ -47,11 +48,9 @@ public abstract class NoteDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            noteDAO.insert(new Note("Sheldon Cooper", "Main character", 1));
-            noteDAO.insert(new Note("Penny", "Main character", 1));
-            noteDAO.insert(new Note("Leonard Hofstadter", "Main character", 1));
-            noteDAO.insert(new Note("Howard Wolowitz","Main character", 5));
-            noteDAO.insert(new Note("Rajesh Koothrappali", "Main character", 3));
+            for (int i=0;i<5;i++){
+                noteDAO.insert(Utils.generateRandomNote());
+            }
             return null;
         }
     }
