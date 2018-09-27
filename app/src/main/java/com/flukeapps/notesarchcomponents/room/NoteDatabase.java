@@ -17,6 +17,7 @@ public abstract class NoteDatabase extends RoomDatabase {
 
     public abstract NoteDAO noteDAO();
 
+    //Only gets called on first run of the application
     public static synchronized NoteDatabase getInstance(Context context){
         if (instance == null){
             instance = Room.databaseBuilder(context.getApplicationContext(),
@@ -46,9 +47,11 @@ public abstract class NoteDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            noteDAO.insert(new Note("Title 1", "Description 1", 1));
-            noteDAO.insert(new Note("Title 2", "Description 2", 1));
-            noteDAO.insert(new Note("Title 3", "Description 3", 1));
+            noteDAO.insert(new Note("Sheldon Cooper", "Main character", 1));
+            noteDAO.insert(new Note("Penny", "Main character", 1));
+            noteDAO.insert(new Note("Leonard Hofstadter", "Main character", 1));
+            noteDAO.insert(new Note("Howard Wolowitz","Main character", 5));
+            noteDAO.insert(new Note(" Rajesh Koothrappali", "Main character", 3));
             return null;
         }
     }
