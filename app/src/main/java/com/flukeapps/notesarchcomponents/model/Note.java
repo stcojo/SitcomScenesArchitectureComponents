@@ -37,4 +37,9 @@ public class Note {
     public int getPriority() {
         return priority;
     }
+
+    @Override
+    public String toString() {
+        return "Id:"+id+" Title:"+title+" Description:"+description;
+    }
 }

@@ -1,5 +1,9 @@
 package com.flukeapps.notesarchcomponents.utils;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
 import com.flukeapps.notesarchcomponents.model.Note;
 
 import java.util.ArrayList;
@@ -22,5 +26,20 @@ public class Utils {
         int random_priority = new Random().nextInt(10);
 
         return new Note(random_name,random_location,random_priority);
+    }
+
+    public static boolean isNetworkAvailable(Context context){
+        ConnectivityManager cm =
+                (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        try{
+            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+            return activeNetwork != null &&
+                    activeNetwork.isConnectedOrConnecting();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }

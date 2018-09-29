@@ -5,7 +5,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
-import com.flukeapps.notesarchcomponents.room.NoteRepository;
+import com.flukeapps.notesarchcomponents.repository.NoteRepository;
 
 import java.util.List;
 

@@ -18,19 +18,18 @@ public abstract class NoteDatabase extends RoomDatabase {
 
     public abstract NoteDAO noteDAO();
 
-    //Only gets called on first run of the application
     public static synchronized NoteDatabase getInstance(Context context){
         if (instance == null){
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     NoteDatabase.class, "note_database")
                     .fallbackToDestructiveMigration()
-                    .addCallback(roomCallback)
+                    .addCallback(sampleDataCallback)
                     .build();
         }
         return instance;
     }
 
-    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback(){
+    private static RoomDatabase.Callback sampleDataCallback = new RoomDatabase.Callback(){
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
@@ -38,6 +37,7 @@ public abstract class NoteDatabase extends RoomDatabase {
         }
     };
 
+    //Random data for the DB first creation
     private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void>{
 
         private NoteDAO noteDAO;
