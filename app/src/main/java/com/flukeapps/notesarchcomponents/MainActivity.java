@@ -1,18 +1,18 @@
 package com.flukeapps.notesarchcomponents;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.annotation.Nullable;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.widget.Toast;
 
-import com.flukeapps.notesarchcomponents.adapter.NoteAdapter;
-import com.flukeapps.notesarchcomponents.model.Note;
-import com.flukeapps.notesarchcomponents.model.NoteViewModel;
+import com.flukeapps.notesarchcomponents.adapter.SceneAdapter;
+import com.flukeapps.notesarchcomponents.model.Scene;
+import com.flukeapps.notesarchcomponents.model.SceneViewModel;
 import com.flukeapps.notesarchcomponents.retrofit.RetrofitApi;
 import com.flukeapps.notesarchcomponents.retrofit.RetrofitClient;
 import com.flukeapps.notesarchcomponents.utils.Utils;
@@ -26,9 +26,9 @@ import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
-    private NoteViewModel noteViewModel;
+    private SceneViewModel sceneViewModel;
     private RecyclerView recyclerView;
-    private NoteAdapter noteAdapter;
+    private SceneAdapter sceneAdapter;
     private FloatingActionButton fab;
 
     @Override
@@ -39,15 +39,15 @@ public class MainActivity extends AppCompatActivity {
         fab = findViewById(R.id.fab);
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        noteAdapter = new NoteAdapter();
-        recyclerView.setAdapter(noteAdapter);
+        sceneAdapter = new SceneAdapter();
+        recyclerView.setAdapter(sceneAdapter);
 
-        noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
+        sceneViewModel = ViewModelProviders.of(this).get(SceneViewModel.class);
 
-        noteViewModel.getAllNotes().observe(this, new Observer<List<Note>>() {
+        sceneViewModel.getAllScenes().observe(this, new Observer<List<Scene>>() {
             @Override
-            public void onChanged(@Nullable List<Note> notes) {
-                noteAdapter.setNotes(notes);
+            public void onChanged(@Nullable List<Scene> scenes) {
+                sceneAdapter.setScenes(scenes);
             }
         });
 
@@ -57,13 +57,13 @@ public class MainActivity extends AppCompatActivity {
                 fetchDataFromServer();
             } else {
                 Toast.makeText(this, "Generating locally...", Toast.LENGTH_SHORT).show();
-                Note note = Utils.generateRandomNote();
-                noteViewModel.insert(note);
+                Scene scene = Utils.generateRandomScene();
+                sceneViewModel.insert(scene);
             }
         });
 
         fab.setOnLongClickListener(view -> {
-            noteViewModel.deleteAllNotes();
+            sceneViewModel.deleteAllScenes();
             return true;
         });
     }
@@ -73,19 +73,19 @@ public class MainActivity extends AppCompatActivity {
     private void fetchDataFromServer(){
         Retrofit retrofit = RetrofitClient.getClient();
         RetrofitApi retrofitApi = retrofit.create(RetrofitApi.class);
-        Call<List<Note>> call = retrofitApi.getWebNotes();
+        Call<List<Scene>> call = retrofitApi.getWebNotes();
 
-        call.enqueue(new Callback<List<Note>>() {
+        call.enqueue(new Callback<List<Scene>>() {
             @Override
-            public void onResponse(Call<List<Note>> call, Response<List<Note>> response) {
-                List<Note> notes = response.body();
-                for (int i=0;i<notes.size();i++){
-                    noteViewModel.insert(notes.get(i));
+            public void onResponse(Call<List<Scene>> call, Response<List<Scene>> response) {
+                List<Scene> scenes = response.body();
+                for (int i = 0; i< scenes.size(); i++){
+                    sceneViewModel.insert(scenes.get(i));
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Note>> call, Throwable t) {
+            public void onFailure(Call<List<Scene>> call, Throwable t) {
 
             }
         });

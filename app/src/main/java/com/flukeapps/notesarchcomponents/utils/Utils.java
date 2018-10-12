@@ -4,7 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.flukeapps.notesarchcomponents.model.Note;
+import com.flukeapps.notesarchcomponents.model.Scene;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,16 +16,16 @@ public class Utils {
     private static List<String> names = Arrays.asList("Sheldon Cooper","Penny","Leonard Hofstadter","Howard Wolowitz","Rajesh Koothrappali");
     private static List<String> places = Arrays.asList("Sheldon's spot", "The elevator", "Pasadena", "Penny's apartment", "Sheldon's apartment", "Cal Tech");
 
-    public static Note generateRandomNote(){
+    public static Scene generateRandomScene(){
 
         ArrayList<String> names_list = new ArrayList<>(names);
         ArrayList<String> places_list = new ArrayList<>(places);
 
-        String random_name = names_list.get(new Random().nextInt(names.size()));
+        String random_character1 = names_list.get(new Random().nextInt(names.size()));
+        String random_character2 = names_list.get(new Random().nextInt(names.size()));
         String random_location = places_list.get(new Random().nextInt(places.size()));
-        int random_priority = new Random().nextInt(10);
 
-        return new Note(random_name,random_location,random_priority);
+        return new Scene(random_character1,random_character2,random_location);
     }
 
     public static boolean isNetworkAvailable(Context context){
