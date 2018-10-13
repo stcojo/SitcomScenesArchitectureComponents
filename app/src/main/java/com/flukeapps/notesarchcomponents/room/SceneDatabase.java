@@ -1,27 +1,27 @@
 package com.flukeapps.notesarchcomponents.room;
 
-import android.arch.persistence.db.SupportSQLiteDatabase;
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
+import androidx.room.Database;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
-import com.flukeapps.notesarchcomponents.model.Note;
+import com.flukeapps.notesarchcomponents.model.Scene;
 import com.flukeapps.notesarchcomponents.utils.Utils;
 
-@Database(entities = Note.class, version = 1)
-public abstract class NoteDatabase extends RoomDatabase {
+@Database(entities = Scene.class, version = 1)
+public abstract class SceneDatabase extends RoomDatabase {
 
-    private static NoteDatabase instance;
+    private static SceneDatabase instance;
 
-    public abstract NoteDAO noteDAO();
+    public abstract SceneDAO sceneDAO();
 
-    public static synchronized NoteDatabase getInstance(Context context){
+    public static synchronized SceneDatabase getInstance(Context context){
         if (instance == null){
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                    NoteDatabase.class, "note_database")
+                    SceneDatabase.class, "scene_database")
                     .fallbackToDestructiveMigration()
                     .addCallback(sampleDataCallback)
                     .build();
@@ -40,16 +40,16 @@ public abstract class NoteDatabase extends RoomDatabase {
     //Random data for the DB first creation
     private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void>{
 
-        private NoteDAO noteDAO;
+        private SceneDAO sceneDAO;
 
-        private PopulateDbAsyncTask(NoteDatabase db){
-            noteDAO = db.noteDAO();
+        private PopulateDbAsyncTask(SceneDatabase db){
+            sceneDAO = db.sceneDAO();
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
             for (int i=0;i<5;i++){
-                noteDAO.insert(Utils.generateRandomNote());
+                sceneDAO.insert(Utils.generateRandomScene());
             }
             return null;
         }
