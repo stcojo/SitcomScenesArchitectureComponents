@@ -17,6 +17,7 @@
 
         <TextView
             android:id="@+id/txt_character1"
+            android:fontFamily="sans-serif"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -26,6 +27,7 @@
 
         <TextView
             android:id="@+id/txt_character2"
+            android:fontFamily="sans-serif"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -35,6 +37,7 @@
 
         <TextView
             android:id="@+id/txt_location"
+            android:fontFamily="sans-serif"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Location" />

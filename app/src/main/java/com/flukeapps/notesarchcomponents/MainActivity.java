@@ -85,13 +85,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-<<<<<<< HEAD
-            public void onFailure(Call<List<Note>> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Failed to contact server:"+t.getMessage(), Toast.LENGTH_LONG).show();
-=======
             public void onFailure(Call<List<Scene>> call, Throwable t) {
 
->>>>>>> f08aaca7a4d1508c27bb5cdbec25167e5d1402a5
             }
         });
     }
