@@ -13,19 +13,19 @@ import java.util.Random;
 
 public class Utils {
 
-    private static List<String> names = Arrays.asList("Sheldon Cooper","Penny","Leonard Hofstadter","Howard Wolowitz","Rajesh Koothrappali");
-    private static List<String> places = Arrays.asList("Sheldon's spot", "The elevator", "Pasadena", "Penny's apartment", "Sheldon's apartment", "Cal Tech");
+    private static List<String> tasks = Arrays.asList("Buy milk","Buy eggs","Do pushups","Write novel","Research");
+    private static List<String> places = Arrays.asList("At work", "At supermarket", "At Starbucks", "On the bus", "At gym", "At KFC");
 
     public static Note generateRandomNote(){
 
-        ArrayList<String> names_list = new ArrayList<>(names);
+        ArrayList<String> tasks_list = new ArrayList<>(tasks);
         ArrayList<String> places_list = new ArrayList<>(places);
 
-        String random_name = names_list.get(new Random().nextInt(names.size()));
+        String random_task = tasks_list.get(new Random().nextInt(tasks.size()));
         String random_location = places_list.get(new Random().nextInt(places.size()));
         int random_priority = new Random().nextInt(10);
 
-        return new Note(random_name,random_location,random_priority);
+        return new Note(random_task,random_location,random_priority);
     }
 
     public static boolean isNetworkAvailable(Context context){

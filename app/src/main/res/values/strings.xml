@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">NotesArchComponents</string>
+    <string-array name="characters_array">
+        <item>Sheldon Cooper</item>
+        <item>Penny</item>
+        <item>Leonard Hofstadter</item>
+        <item>Howard Wolowitz</item>
+        <item>Rajesh Koothrappali</item>
+    </string-array>
+    <string-array name="locations_array">
+        <item>Sheldons spot</item>
+        <item>The elevator</item>
+        <item>Pasadena</item>
+        <item>Pennys apartment</item>
+        <item>Cal Tech</item>
+        <item>Cal Tech cafeteria</item>
+        <item>Cheesecake Factory</item>
+    </string-array>
 </resources>
