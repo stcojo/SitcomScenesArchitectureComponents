@@ -86,9 +86,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Scene>> call, Throwable t) {
-
+                //test push
             }
         });
     }
-
 }
