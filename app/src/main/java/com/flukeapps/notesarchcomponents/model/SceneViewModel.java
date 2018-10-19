@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.annotation.NonNull;
 
+import com.flukeapps.notesarchcomponents.adapter.SceneAdapter;
 import com.flukeapps.notesarchcomponents.repository.SceneRepository;
 
 import java.util.List;
@@ -20,8 +21,8 @@ public class SceneViewModel extends AndroidViewModel {
         allScenes = repository.getAllScenes();
     }
 
-    public void insert(Scene scene){
-        repository.insert(scene);
+    public void insert(){
+        repository.InsertScene_fetchedOrGenerated();
     }
 
     public void update(Scene scene){

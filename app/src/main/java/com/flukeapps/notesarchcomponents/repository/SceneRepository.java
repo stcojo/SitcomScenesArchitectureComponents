@@ -2,11 +2,20 @@ package com.flukeapps.notesarchcomponents.repository;
 
 import android.app.Application;
 import androidx.lifecycle.LiveData;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import com.flukeapps.notesarchcomponents.model.Scene;
+import com.flukeapps.notesarchcomponents.retrofit.RetrofitApi;
+import com.flukeapps.notesarchcomponents.retrofit.RetrofitClient;
 import com.flukeapps.notesarchcomponents.room.SceneDAO;
 import com.flukeapps.notesarchcomponents.room.SceneDatabase;
+import com.flukeapps.notesarchcomponents.utils.Utils;
 
 import java.util.List;
 
@@ -14,12 +23,41 @@ public class SceneRepository {
 
     private SceneDAO sceneDAO;
     private LiveData<List<Scene>> allScenes;
+    private Scene sceneToReturn;
 
     public SceneRepository(Application application){
         SceneDatabase database = SceneDatabase.getInstance(application);
 
         sceneDAO = database.sceneDAO();
         allScenes = sceneDAO.getAllScenes();
+    }
+
+    public LiveData<List<Scene>> getAllScenes() {
+        return allScenes;
+    }
+
+    public void InsertScene_fetchedOrGenerated(){
+        Retrofit retrofit = RetrofitClient.getClient();
+        RetrofitApi retrofitApi = retrofit.create(RetrofitApi.class);
+        Call<List<Scene>> call = retrofitApi.getWebNotes();
+
+        call.enqueue(new Callback<List<Scene>>() {
+            @Override
+            public void onResponse(Call<List<Scene>> call, Response<List<Scene>> response) {
+                System.out.println("============= LOADING FROM WEB");
+                List<Scene> scenes = response.body();
+                sceneToReturn = scenes.get(0);
+                insert(sceneToReturn);
+            }
+
+            @Override
+            public void onFailure(Call<List<Scene>> call, Throwable t) {
+                System.out.println("============= LOADING LOCALLY");
+                System.out.println("============= " + t.getMessage());
+                sceneToReturn = Utils.generateRandomScene();
+                insert(sceneToReturn);
+            }
+        });
     }
 
     public void insert(Scene scene){
@@ -36,10 +74,6 @@ public class SceneRepository {
 
     public void deleteAllScenes(){
         new DeleteAllScenesAsyncTask(sceneDAO).execute();
-    }
-
-    public LiveData<List<Scene>> getAllScenes() {
-        return allScenes;
     }
 
     private static class InsertSceneAsyncTask extends AsyncTask<Scene, Void, Void> {

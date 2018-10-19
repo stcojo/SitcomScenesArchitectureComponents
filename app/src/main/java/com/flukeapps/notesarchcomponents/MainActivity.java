@@ -52,42 +52,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         fab.setOnClickListener(view -> {
-            if (Utils.isNetworkAvailable(this)){
-                Toast.makeText(this, "Loading from server...", Toast.LENGTH_SHORT).show();
-                fetchDataFromServer();
-            } else {
-                Toast.makeText(this, "Generating locally...", Toast.LENGTH_SHORT).show();
-                Scene scene = Utils.generateRandomScene();
-                sceneViewModel.insert(scene);
-            }
-        });
+            sceneViewModel.insert();
+          });
 
         fab.setOnLongClickListener(view -> {
             sceneViewModel.deleteAllScenes();
             return true;
-        });
-    }
-
-    //WRONG
-    //TODO repository should choose
-    private void fetchDataFromServer(){
-        Retrofit retrofit = RetrofitClient.getClient();
-        RetrofitApi retrofitApi = retrofit.create(RetrofitApi.class);
-        Call<List<Scene>> call = retrofitApi.getWebNotes();
-
-        call.enqueue(new Callback<List<Scene>>() {
-            @Override
-            public void onResponse(Call<List<Scene>> call, Response<List<Scene>> response) {
-                List<Scene> scenes = response.body();
-                for (int i = 0; i< scenes.size(); i++){
-                    sceneViewModel.insert(scenes.get(i));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Scene>> call, Throwable t) {
-                //test push
-            }
         });
     }
 }
