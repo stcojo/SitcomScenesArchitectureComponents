@@ -13,8 +13,8 @@ import java.util.Random;
 
 public class Utils {
 
-    private static List<String> names = Arrays.asList("Sheldon Cooper","Penny","Leonard Hofstadter","Howard Wolowitz","Rajesh Koothrappali");
-    private static List<String> places = Arrays.asList("Sheldon's spot", "The elevator", "Pasadena", "Penny's apartment", "Sheldon's apartment", "Cal Tech");
+    private static List<String> names = Arrays.asList("Sheldon Cooper","Penny","Leonard Hofstadter","Howard Wolowitz","Raj Koothrappali");
+    private static List<String> places = Arrays.asList("Sheldon's spot", "The elevator", "Comic con", "Penny's apartment", "Sheldon's apartment", "Comic store");
 
     public static Scene generateRandomScene(){
 

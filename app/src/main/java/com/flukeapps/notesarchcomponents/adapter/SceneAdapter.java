@@ -6,8 +6,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.flukeapps.notesarchcomponents.R;
 import com.flukeapps.notesarchcomponents.model.Scene;
 
@@ -36,6 +40,12 @@ public class SceneAdapter extends RecyclerView.Adapter<SceneAdapter.SceneHolder>
         holder.txt_char1.setText(currentScene.getCharacter1());
         holder.txt_char2.setText(currentScene.getCharacter2());
         holder.txt_location.setText(currentScene.getLocation());
+
+        Glide.with(holder.itemView.getContext())
+                .load(getCorrectImage(currentScene.getLocation()))
+                .apply(RequestOptions.centerCropTransform())
+                .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL))
+                .into(holder.imagine);
     }
 
     @Override
@@ -43,16 +53,31 @@ public class SceneAdapter extends RecyclerView.Adapter<SceneAdapter.SceneHolder>
         return scenes.size();
     }
 
+    private int getCorrectImage(String location){
+        switch (location){
+            case "Sheldon's apartment": return R.drawable.sheldonap;
+            case "Sheldon's spot": return R.drawable.sheldonspot;
+            case "Comic store": return R.drawable.comicstore;
+            case "Penny's apartment": return R.drawable.pennyap;
+            case "The elevator": return R.drawable.elevator;
+            case "Cafeteria": return R.drawable.cafeteria;
+            case "Comic con": return R.drawable.comiccon;
+            default: return R.drawable.sheldonap;
+        }
+    }
+
     class SceneHolder extends RecyclerView.ViewHolder {
         private TextView txt_char1;
         private TextView txt_char2;
         private TextView txt_location;
+        private ImageView imagine;
 
         public SceneHolder(View itemView) {
             super(itemView);
             txt_char1 = itemView.findViewById(R.id.txt_character1);
             txt_char2 = itemView.findViewById(R.id.txt_character2);
             txt_location = itemView.findViewById(R.id.txt_location);
+            imagine = itemView.findViewById(R.id.imagine);
         }
     }
 }

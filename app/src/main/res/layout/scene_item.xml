@@ -20,28 +20,42 @@
             android:fontFamily="sans-serif"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
             android:maxLines="1"
-            android:text="Character 1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:text="@string/character_1"
+            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title" />
 
         <TextView
             android:id="@+id/txt_character2"
             android:fontFamily="sans-serif"
+            android:fadingEdge="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
             android:maxLines="1"
-            android:text="Character 2"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:text="@string/character_2"
+            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title" />
 
         <TextView
             android:id="@+id/txt_location"
             android:fontFamily="sans-serif"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Location" />
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
+            android:text="@string/location" />
 
     </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_gravity="end"
+        app:cardCornerRadius="12dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imagine"
+            android:src="@drawable/sheldonspot"
+
+            android:layout_width="120dp"
+            android:layout_height="80dp" />
+    </androidx.cardview.widget.CardView>
 
 </androidx.cardview.widget.CardView>
