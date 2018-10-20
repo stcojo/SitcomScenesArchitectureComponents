@@ -4,10 +4,7 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.annotation.NonNull;
-
-import com.flukeapps.notesarchcomponents.adapter.SceneAdapter;
 import com.flukeapps.notesarchcomponents.repository.SceneRepository;
-
 import java.util.List;
 
 public class SceneViewModel extends AndroidViewModel {

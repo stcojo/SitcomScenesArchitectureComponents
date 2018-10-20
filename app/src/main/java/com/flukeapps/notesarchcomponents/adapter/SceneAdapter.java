@@ -17,8 +17,8 @@ import java.util.List;
 public class SceneAdapter extends RecyclerView.Adapter<SceneAdapter.SceneHolder> {
     private List<Scene> scenes = new ArrayList<>();
 
-    public void setScenes(List<Scene> scenes) {
-        this.scenes = scenes;
+    public void setScenes(List<Scene> newScenes) {
+        scenes = newScenes;
         notifyDataSetChanged();
     }
 

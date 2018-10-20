@@ -51,9 +51,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        fab.setOnClickListener(view -> {
-            sceneViewModel.insert();
-          });
+        fab.setOnClickListener(view -> sceneViewModel.insert());
 
         fab.setOnLongClickListener(view -> {
             sceneViewModel.deleteAllScenes();
