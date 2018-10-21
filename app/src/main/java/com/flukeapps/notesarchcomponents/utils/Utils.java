@@ -1,9 +1,6 @@
 package com.flukeapps.notesarchcomponents.utils;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-
+import com.flukeapps.notesarchcomponents.R;
 import com.flukeapps.notesarchcomponents.model.Scene;
 
 import java.util.ArrayList;
@@ -13,33 +10,26 @@ import java.util.Random;
 
 public class Utils {
 
-    private static List<String> names = Arrays.asList("Sheldon Cooper","Penny","Leonard Hofstadter","Howard Wolowitz","Raj Koothrappali");
-    private static List<String> places = Arrays.asList("Sheldon's spot", "The elevator", "Comic con", "Penny's apartment", "Sheldon's apartment", "Comic store");
+    private static List<String> names = Arrays.asList("Sheldon Cooper","Penny","Leonard Hofstadter","Howard Wolowitz",
+            "Raj Koothrappali");
+    private static List<String> places = Arrays.asList("Sheldon's spot", "The elevator", "Comic con",
+            "Penny's apartment", "Sheldon's apartment", "Comic store", "Cafeteria");
+    private static List<Integer> places_drawables = Arrays.asList(R.drawable.sheldonspot, R.drawable.elevator, R.drawable.comiccon,
+            R.drawable.pennyap, R.drawable.sheldonap, R.drawable.comicstore, R.drawable.cafeteria);
 
     public static Scene generateRandomScene(){
 
         ArrayList<String> names_list = new ArrayList<>(names);
         ArrayList<String> places_list = new ArrayList<>(places);
+        ArrayList<Integer> places_drawables_list = new ArrayList<>(places_drawables);
 
         String random_character1 = names_list.get(new Random().nextInt(names.size()));
         String random_character2 = names_list.get(new Random().nextInt(names.size()));
-        String random_location = places_list.get(new Random().nextInt(places.size()));
 
-        return new Scene(random_character1,random_character2,random_location);
-    }
+        int randomLocationIndex = new Random().nextInt(places.size());
+        String random_location = places_list.get(randomLocationIndex);
+        int random_location_drawable = places_drawables_list.get(randomLocationIndex);
 
-    public static boolean isNetworkAvailable(Context context){
-        ConnectivityManager cm =
-                (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        try{
-            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-
-            return activeNetwork != null &&
-                    activeNetwork.isConnectedOrConnecting();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        return false;
+        return new Scene(random_character1,random_character2,random_location, random_location_drawable);
     }
 }

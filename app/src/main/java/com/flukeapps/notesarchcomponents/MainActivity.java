@@ -3,9 +3,13 @@ package com.flukeapps.notesarchcomponents;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.annotation.Nullable;
+
+import com.flukeapps.notesarchcomponents.model.MyDiffCallback;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.widget.Toast;
@@ -17,6 +21,7 @@ import com.flukeapps.notesarchcomponents.retrofit.RetrofitApi;
 import com.flukeapps.notesarchcomponents.retrofit.RetrofitClient;
 import com.flukeapps.notesarchcomponents.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -58,4 +63,5 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
     }
+
 }

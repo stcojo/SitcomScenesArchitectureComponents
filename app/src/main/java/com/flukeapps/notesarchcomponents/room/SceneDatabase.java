@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import com.flukeapps.notesarchcomponents.model.Scene;
 import com.flukeapps.notesarchcomponents.utils.Utils;
 
-@Database(entities = Scene.class, version = 1)
+@Database(entities = Scene.class, version = 2)
 public abstract class SceneDatabase extends RoomDatabase {
 
     private static SceneDatabase instance;

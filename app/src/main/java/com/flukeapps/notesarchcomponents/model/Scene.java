@@ -11,11 +11,13 @@ public class Scene {
     private String character1;
     private String character2;
     private String location;
+    private int locationDrawable;
 
-    public Scene(String character1, String character2, String location) {
+    public Scene(String character1, String character2, String location, int locationDrawable) {
         this.character1 = character1;
         this.character2 = character2;
         this.location = location;
+        this.locationDrawable = locationDrawable;
     }
 
     public int getId() {
@@ -50,6 +52,14 @@ public class Scene {
         this.location = location;
     }
 
+    public int getLocationDrawable() {
+        return locationDrawable;
+    }
+
+    public void setLocationDrawable(int locationDrawable) {
+        this.locationDrawable = locationDrawable;
+    }
+
     @Override
     public String toString() {
         return "Scene{" +
@@ -57,6 +67,7 @@ public class Scene {
                 ", character1='" + character1 + '\'' +
                 ", character2='" + character2 + '\'' +
                 ", location='" + location + '\'' +
+                ", locationDrawable=" + locationDrawable +
                 '}';
     }
 }

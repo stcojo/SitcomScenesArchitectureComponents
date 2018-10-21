@@ -1,14 +1,7 @@
 package com.flukeapps.notesarchcomponents.repository;
 
 import android.app.Application;
-import androidx.lifecycle.LiveData;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import com.flukeapps.notesarchcomponents.model.Scene;
 import com.flukeapps.notesarchcomponents.retrofit.RetrofitApi;
@@ -18,6 +11,12 @@ import com.flukeapps.notesarchcomponents.room.SceneDatabase;
 import com.flukeapps.notesarchcomponents.utils.Utils;
 
 import java.util.List;
+
+import androidx.lifecycle.LiveData;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class SceneRepository {
 
