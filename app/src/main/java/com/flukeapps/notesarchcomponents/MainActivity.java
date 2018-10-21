@@ -1,33 +1,22 @@
 package com.flukeapps.notesarchcomponents;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.annotation.Nullable;
-
-import com.flukeapps.notesarchcomponents.model.MyDiffCallback;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.flukeapps.notesarchcomponents.adapter.SceneAdapter;
 import com.flukeapps.notesarchcomponents.model.Scene;
 import com.flukeapps.notesarchcomponents.model.SceneViewModel;
-import com.flukeapps.notesarchcomponents.retrofit.RetrofitApi;
-import com.flukeapps.notesarchcomponents.retrofit.RetrofitClient;
-import com.flukeapps.notesarchcomponents.utils.Utils;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,6 +51,22 @@ public class MainActivity extends AppCompatActivity {
             sceneViewModel.deleteAllScenes();
             return true;
         });
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                sceneViewModel.delete(sceneAdapter.getSceneAt(viewHolder.getAdapterPosition()));
+                Toast.makeText(MainActivity.this, "Scene deleted", Toast.LENGTH_SHORT).show();
+            }
+        }).attachToRecyclerView(recyclerView);
     }
+
+
 
 }

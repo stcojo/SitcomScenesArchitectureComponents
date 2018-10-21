@@ -1,11 +1,14 @@
 package com.flukeapps.notesarchcomponents.model;
 
 import android.app.Application;
+
+import com.flukeapps.notesarchcomponents.repository.SceneRepository;
+
+import java.util.List;
+
+import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.annotation.NonNull;
-import com.flukeapps.notesarchcomponents.repository.SceneRepository;
-import java.util.List;
 
 public class SceneViewModel extends AndroidViewModel {
 

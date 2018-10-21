@@ -44,10 +44,23 @@ public class SceneAdapter extends RecyclerView.Adapter<SceneAdapter.SceneHolder>
         holder.txt_location.setText(currentScene.getLocation());
 
         Glide.with(holder.itemView.getContext())
-                .load(currentScene.getLocationDrawable())
+                .load(getCorrectImage(currentScene.getLocation()))
                 .apply(RequestOptions.centerCropTransform())
                 .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL))
                 .into(holder.imagine);
+    }
+
+    private int getCorrectImage(String location){
+        switch (location){
+            case "Sheldon's apartment": return R.drawable.sheldonap;
+            case "Sheldon's spot": return R.drawable.sheldonspot;
+            case "Comic store": return R.drawable.comicstore;
+            case "Penny's apartment": return R.drawable.pennyap;
+            case "The elevator": return R.drawable.elevator;
+            case "Cafeteria": return R.drawable.cafeteria;
+            case "Comic con": return R.drawable.comiccon;
+            default: return R.drawable.sheldonap;
+        }
     }
 
     @Override
@@ -55,6 +68,9 @@ public class SceneAdapter extends RecyclerView.Adapter<SceneAdapter.SceneHolder>
         return scenes.size();
     }
 
+    public Scene getSceneAt(int position) {
+        return scenes.get(position);
+    }
 
     class SceneHolder extends RecyclerView.ViewHolder {
         private TextView txt_char1;

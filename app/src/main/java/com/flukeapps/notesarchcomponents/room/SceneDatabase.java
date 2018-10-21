@@ -1,17 +1,18 @@
 package com.flukeapps.notesarchcomponents.room;
 
-import androidx.sqlite.db.SupportSQLiteDatabase;
-import androidx.room.Database;
-import androidx.room.Room;
-import androidx.room.RoomDatabase;
 import android.content.Context;
 import android.os.AsyncTask;
-import androidx.annotation.NonNull;
 
 import com.flukeapps.notesarchcomponents.model.Scene;
 import com.flukeapps.notesarchcomponents.utils.Utils;
 
-@Database(entities = Scene.class, version = 2)
+import androidx.annotation.NonNull;
+import androidx.room.Database;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
+
+@Database(entities = Scene.class, version = 3)
 public abstract class SceneDatabase extends RoomDatabase {
 
     private static SceneDatabase instance;
