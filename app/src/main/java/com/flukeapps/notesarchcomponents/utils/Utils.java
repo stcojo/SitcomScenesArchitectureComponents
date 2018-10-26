@@ -19,8 +19,10 @@ public class Utils {
         ArrayList<String> names_list = new ArrayList<>(names);
         ArrayList<String> places_list = new ArrayList<>(places);
 
-        String random_character1 = names_list.get(new Random().nextInt(names.size()));
-        String random_character2 = names_list.get(new Random().nextInt(names.size()));
+        int randomNr = new Random().nextInt(names.size());
+        String random_character1 = names_list.get(randomNr);
+        names_list.remove(randomNr);
+        String random_character2 = names_list.get(new Random().nextInt(names.size()-1));
         String random_location = places_list.get(new Random().nextInt(places.size()));
 
         return new Scene(random_character1,random_character2,random_location);
