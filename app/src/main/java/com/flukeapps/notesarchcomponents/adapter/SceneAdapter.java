@@ -15,11 +15,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.flukeapps.notesarchcomponents.R;
-import com.flukeapps.notesarchcomponents.model.MyDiffCallback;
 import com.flukeapps.notesarchcomponents.model.Scene;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SceneAdapter extends ListAdapter<Scene, SceneAdapter.SceneHolder> {
 
