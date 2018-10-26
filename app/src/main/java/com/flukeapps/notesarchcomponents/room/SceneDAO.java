@@ -17,6 +17,7 @@ public interface SceneDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Scene scene);
+    //TODO when loading from web and replacing the id glitches
 
     @Update
     void update(Scene scene);
@@ -27,6 +28,6 @@ public interface SceneDAO {
     @Query("DELETE FROM scene_table")
     void deleteAllScenes();
 
-    @Query("SELECT * FROM scene_table")
+    @Query("SELECT * FROM scene_table ORDER BY id")
     LiveData<List<Scene>> getAllScenes();
 }
