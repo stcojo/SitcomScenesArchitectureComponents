@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         sceneViewModel.getAllScenes().observe(this, new Observer<List<Scene>>() {
             @Override
             public void onChanged(@Nullable List<Scene> scenes) {
-                sceneAdapter.setScenes(scenes);
+                sceneAdapter.submitList(scenes);
             }
         });
 

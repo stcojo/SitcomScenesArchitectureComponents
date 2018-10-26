@@ -3,6 +3,7 @@ package com.flukeapps.notesarchcomponents.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,13 +21,26 @@ import com.flukeapps.notesarchcomponents.model.Scene;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SceneAdapter extends RecyclerView.Adapter<SceneAdapter.SceneHolder> {
-    private List<Scene> scenes = new ArrayList<>();
+public class SceneAdapter extends ListAdapter<Scene, SceneAdapter.SceneHolder> {
 
-    public void setScenes(List<Scene> newScenes) {
-        scenes = newScenes;
-        notifyDataSetChanged();
+    public SceneAdapter() {
+        super(DIFF_CALLBACK);
     }
+
+    private static final DiffUtil.ItemCallback<Scene> DIFF_CALLBACK = new DiffUtil.ItemCallback<Scene>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Scene oldItem, @NonNull Scene newItem) {
+            return oldItem.getId() == newItem.getId();
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Scene oldItem, @NonNull Scene newItem) {
+            return oldItem.getCharacter1().equals(newItem.getCharacter1()) &&
+                    oldItem.getCharacter2().equals(newItem.getCharacter2()) &&
+                    oldItem.getLocation().equals(newItem.getLocation());
+        }
+    };
+
 
     @NonNull
     @Override
@@ -38,7 +52,7 @@ public class SceneAdapter extends RecyclerView.Adapter<SceneAdapter.SceneHolder>
 
     @Override
     public void onBindViewHolder(@NonNull SceneHolder holder, int position) {
-        Scene currentScene = scenes.get(position);
+        Scene currentScene = getItem(position);
         holder.txt_char1.setText(currentScene.getCharacter1());
         holder.txt_char2.setText(currentScene.getCharacter2());
         holder.txt_location.setText(currentScene.getLocation());
@@ -63,13 +77,9 @@ public class SceneAdapter extends RecyclerView.Adapter<SceneAdapter.SceneHolder>
         }
     }
 
-    @Override
-    public int getItemCount() {
-        return scenes.size();
-    }
 
     public Scene getSceneAt(int position) {
-        return scenes.get(position);
+        return getItem(position);
     }
 
     class SceneHolder extends RecyclerView.ViewHolder {
