@@ -53,17 +53,12 @@ public class SceneAdapter extends ListAdapter<Scene, SceneAdapter.SceneHolder> {
         holder.txt_char1.setText(currentScene.getCharacter1());
         holder.txt_char2.setText(currentScene.getCharacter2());
         holder.txt_location.setText(currentScene.getLocation());
-
+        holder.txt_id.setText(String.format("%s", "Scene number: " + String.valueOf(currentScene.getId())));
         Glide.with(holder.itemView.getContext())
                 .load(getCorrectImage(currentScene.getLocation()))
                 .apply(RequestOptions.centerCropTransform())
                 .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL))
                 .into(holder.imagine);
-
-        holder.imagine.setOnClickListener(view -> {
-            Toast.makeText(holder.itemView.getContext(), String.valueOf(getItem(position).getId()), Toast.LENGTH_SHORT).show();
-        });
-
     }
 
     private int getCorrectImage(String location){
@@ -88,6 +83,7 @@ public class SceneAdapter extends ListAdapter<Scene, SceneAdapter.SceneHolder> {
         private TextView txt_char1;
         private TextView txt_char2;
         private TextView txt_location;
+        private TextView txt_id;
         private ImageView imagine;
 
         public SceneHolder(View itemView) {
@@ -95,6 +91,7 @@ public class SceneAdapter extends ListAdapter<Scene, SceneAdapter.SceneHolder> {
             txt_char1 = itemView.findViewById(R.id.txt_character1);
             txt_char2 = itemView.findViewById(R.id.txt_character2);
             txt_location = itemView.findViewById(R.id.txt_location);
+            txt_id = itemView.findViewById(R.id.txt_id);
             imagine = itemView.findViewById(R.id.imagine);
         }
     }

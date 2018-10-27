@@ -13,6 +13,7 @@ public class Utils {
             "Raj Koothrappali");
     private static List<String> places = Arrays.asList("Sheldon's spot", "The elevator", "Comic con",
             "Penny's apartment", "Sheldon's apartment", "Comic store", "Cafeteria");
+    public static String BASE_URL = "http://stefancojocaru.info/api/";
 
     public static Scene generateRandomScene(){
 
@@ -24,7 +25,7 @@ public class Utils {
         names_list.remove(randomNr);
         String random_character2 = names_list.get(new Random().nextInt(names.size()-1));
         String random_location = places_list.get(new Random().nextInt(places.size()));
-
-        return new Scene(random_character1,random_character2,random_location);
+        int randomId = new Random().nextInt(100);
+        return new Scene(randomId, random_character1,random_character2,random_location);
     }
 }

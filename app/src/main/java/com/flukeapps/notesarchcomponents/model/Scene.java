@@ -6,13 +6,14 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "scene_table")
 public class Scene {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     private int id;
     private String character1;
     private String character2;
     private String location;
 
-    public Scene(String character1, String character2, String location) {
+    public Scene(int id, String character1, String character2, String location) {
+        this.id = id;
         this.character1 = character1;
         this.character2 = character2;
         this.location = location;

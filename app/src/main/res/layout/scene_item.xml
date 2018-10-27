@@ -4,6 +4,9 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="12dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
     android:elevation="4dp"
     android:layout_marginEnd="8dp"
     android:layout_marginStart="8dp"
@@ -42,6 +45,14 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
             android:text="@string/location" />
 
+        <TextView
+            android:id="@+id/txt_id"
+            android:fontFamily="sans-serif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
+            android:text="@string/scene_number" />
+
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
@@ -53,9 +64,9 @@
         <ImageView
             android:id="@+id/imagine"
             android:src="@drawable/sheldonspot"
-
-            android:layout_width="120dp"
-            android:layout_height="80dp" />
+            android:contentDescription="@string/image_with_the_characters"
+            android:layout_width="130dp"
+            android:layout_height="90dp" />
     </androidx.cardview.widget.CardView>
 
 </androidx.cardview.widget.CardView>

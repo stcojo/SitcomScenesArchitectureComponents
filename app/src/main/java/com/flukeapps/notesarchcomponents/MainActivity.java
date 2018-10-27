@@ -1,6 +1,9 @@
 package com.flukeapps.notesarchcomponents;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.flukeapps.notesarchcomponents.adapter.SceneAdapter;
@@ -10,6 +13,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -35,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         sceneAdapter = new SceneAdapter();
         recyclerView.setAdapter(sceneAdapter);
+        addSwipeFunctionality(recyclerView);
 
         sceneViewModel = ViewModelProviders.of(this).get(SceneViewModel.class);
 
@@ -51,22 +56,38 @@ public class MainActivity extends AppCompatActivity {
             sceneViewModel.deleteAllScenes();
             return true;
         });
+    }
 
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
-                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+    public void addSwipeFunctionality(RecyclerView recyclerView){
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
             }
 
             @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 sceneViewModel.delete(sceneAdapter.getSceneAt(viewHolder.getAdapterPosition()));
                 Toast.makeText(MainActivity.this, "Scene deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.delete_all_scenes:
+                sceneViewModel.deleteAllScenes();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

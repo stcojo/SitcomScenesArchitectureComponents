@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">NotesArchComponents</string>
+    <string name="app_name">Sitcom Scenes</string>
     <string name="character_2">Character 2</string>
     <string name="location">Location</string>
     <string name="character_1">Character 1</string>
+    <string name="delete_all_scenes">Delete all scenes</string>
+    <string name="scene_number">Scene number</string>
+    <string name="image_with_the_characters">Image with the characters</string>
     <string-array name="characters_array">
         <item>Sheldon Cooper</item>
         <item>Penny</item>
