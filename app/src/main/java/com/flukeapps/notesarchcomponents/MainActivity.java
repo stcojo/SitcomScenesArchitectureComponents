@@ -1,5 +1,6 @@
 package com.flukeapps.notesarchcomponents;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 import com.flukeapps.notesarchcomponents.adapter.SceneAdapter;
 import com.flukeapps.notesarchcomponents.model.Scene;
 import com.flukeapps.notesarchcomponents.model.SceneViewModel;
+import com.flukeapps.notesarchcomponents.settings.SettingsActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -85,6 +87,9 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.delete_all_scenes:
                 sceneViewModel.deleteAllScenes();
+                return true;
+            case R.id.menu_settings:
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

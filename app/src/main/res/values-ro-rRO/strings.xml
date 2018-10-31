@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sitcom Scenes</string>
+    <string name="character_2">Personajul 2</string>
+    <string name="location">Locație</string>
+    <string name="character_1">Personajul 1</string>
+    <string name="delete_all_scenes">Șterge toate scenele</string>
+    <string name="scene_number">Numărul scenei</string>
+    <string name="image_with_the_characters">Imagine cu personajele</string>
+    <string name="title_activity_settings">Setări</string>
+    <string name="pref_header_general">General</string>
+    <string name="pref_default_display_name">Gică Hagi</string>
+    <string name="pref_title_display_name">Numele afișat</string>
+    <string name="pref_title_social_recommendations">Activează recomandările sociale</string>
+    <string name="pref_description_social_recommendations">Recomandări pentru contacte</string>
+    <string name="pref_title_add_friends_to_messages">Adaugă prieteni în mesaje</string>
+    <string name="pref_header_data_sync">Sincronizare</string>
+    <string name="pref_title_sync_frequency">Frecvența sincronizărilor</string>
+    <string name="pref_title_system_sync_settings">Setări de sistem pentru sincronizare</string>
+    <string name="settings">Setări</string>
+    <string name="pref_switch_network_title">Încarcă scene și de pe rețea</string>
+    <string name="pref_switch_network_summary">Specificați dacă aplicația trebuie să încarce scenele și de pe rețea sau doar să le genereze local.</string>
+</resources>
