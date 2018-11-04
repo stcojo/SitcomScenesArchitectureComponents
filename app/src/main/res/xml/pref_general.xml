@@ -2,7 +2,7 @@
 
     <SwitchPreference
         android:defaultValue="true"
-        android:key="pref_switch_network"
+        android:key="pref_load_from_network"
         android:summary="@string/pref_switch_network_summary"
         android:title="@string/pref_switch_network_title" />
 

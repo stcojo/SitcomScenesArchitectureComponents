@@ -1,8 +1,13 @@
 package com.flukeapps.notesarchcomponents.repository;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
+import android.widget.Toast;
 
+import com.flukeapps.notesarchcomponents.MainActivity;
 import com.flukeapps.notesarchcomponents.model.Scene;
 import com.flukeapps.notesarchcomponents.retrofit.RetrofitApi;
 import com.flukeapps.notesarchcomponents.retrofit.RetrofitClient;
@@ -23,10 +28,11 @@ public class SceneRepository {
     private SceneDAO sceneDAO;
     private LiveData<List<Scene>> allScenes;
     private Scene sceneToReturn;
+    private Context context;
 
     public SceneRepository(Application application){
         SceneDatabase database = SceneDatabase.getInstance(application);
-
+        context = application.getApplicationContext();
         sceneDAO = database.sceneDAO();
         allScenes = sceneDAO.getAllScenes();
     }
@@ -40,23 +46,28 @@ public class SceneRepository {
         RetrofitApi retrofitApi = retrofit.create(RetrofitApi.class);
         Call<List<Scene>> call = retrofitApi.getWebNotes();
 
-        call.enqueue(new Callback<List<Scene>>() {
-            @Override
-            public void onResponse(Call<List<Scene>> call, Response<List<Scene>> response) {
-                System.out.println("============= LOADING FROM WEB");
-                List<Scene> scenes = response.body();
-                sceneToReturn = scenes.get(0);
-                insert(sceneToReturn);
-            }
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        if (prefs.getBoolean("pref_load_from_network",true)){
+            call.enqueue(new Callback<List<Scene>>() {
+                @Override
+                public void onResponse(Call<List<Scene>> call, Response<List<Scene>> response) {
+                    System.out.println("============= LOADING FROM WEB");
+                    List<Scene> scenes = response.body();
+                    sceneToReturn = scenes.get(0);
+                    insert(sceneToReturn);
+                }
 
-            @Override
-            public void onFailure(Call<List<Scene>> call, Throwable t) {
-                System.out.println("============= LOADING LOCALLY");
-                System.out.println("============= " + t.getMessage());
-                sceneToReturn = Utils.generateRandomScene();
-                insert(sceneToReturn);
-            }
-        });
+                @Override
+                public void onFailure(Call<List<Scene>> call, Throwable t) {
+                    Toast.makeText(context, "Unable to connect.", Toast.LENGTH_SHORT).show();
+                    System.out.println("============= " + t.getMessage());
+                }
+            });
+        } else {
+            System.out.println("============= GENERATING LOCALLY");
+            sceneToReturn = Utils.generateRandomScene();
+            insert(sceneToReturn);
+        }
     }
 
     public void insert(Scene scene){

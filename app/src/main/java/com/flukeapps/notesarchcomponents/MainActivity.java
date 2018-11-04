@@ -1,7 +1,9 @@
 package com.flukeapps.notesarchcomponents;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
     }
+
+
 
     public void addSwipeFunctionality(RecyclerView recyclerView){
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
