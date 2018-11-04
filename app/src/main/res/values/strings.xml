@@ -86,13 +86,13 @@
 
     <string name="pref_title_system_sync_settings">System sync settings</string>
     <string name="settings">Settings</string>
-    <string name="pref_switch_network_title">Should the app load scenes from the network</string>
+    <string name="pref_switch_network_title">Load scenes from Web</string>
     <string name="pref_switch_network_summary">Specify if the app should load scenes over the network or just generate locally</string>
-    <string name="title_activity_test">Test</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="title_activity_test" translatable="false">Test</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="nav_header_title" translatable="false">Android Studio</string>
+    <string name="nav_header_subtitle" translatable="false">android.studio@android.com</string>
+    <string name="nav_header_desc" translatable="false">Navigation header</string>
+    <string name="action_settings" translatable="false">Settings</string>
 </resources>
